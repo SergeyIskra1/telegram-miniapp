@@ -270,7 +270,7 @@
   <div id="home" class="screen active">
     <div class="home-header">
       <div class="avatar">С</div>
-      <h1>Дизайнер: Искра</h1>
+      <h1>Сергей Искра</h1>
       <p>Копирайтер · Тексты, которые работают</p>
     </div>
 
@@ -355,25 +355,34 @@
       tg.BackButton.onClick(showHome);
     }
 
-    // Открыть пост в канале — три метода по очереди
+    // Открыть пост в канале
     function openPost() {
-      var path = '/iskra_miniapp/2';
-      var url = 'https://t.me' + path;
+      // path_full = путь ПОСЛЕ t.me/, БЕЗ слеша в начале
+      var pathFull = 'iskra_miniapp/2';
 
-      // Метод 1: низкоуровневый postEvent (самый надёжный на iOS)
-      try {
-        window.TelegramWebviewProxy.postEvent('web_app_open_tg_link', JSON.stringify({ path_full: path }));
+      // Мобильные (iOS/Android): прямой вызов через TelegramWebviewProxy
+      if (window.TelegramWebviewProxy) {
+        window.TelegramWebviewProxy.postEvent(
+          'web_app_open_tg_link',
+          JSON.stringify({ path_full: pathFull })
+        );
         return;
-      } catch(e) {}
+      }
 
-      // Метод 2: стандартный SDK
-      try {
-        tg.openTelegramLink(url);
+      // Веб-версия: postMessage в iframe
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage(
+          JSON.stringify({
+            eventType: 'web_app_open_tg_link',
+            eventData: { path_full: pathFull }
+          }),
+          'https://web.telegram.org'
+        );
         return;
-      } catch(e) {}
+      }
 
-      // Метод 3: прямой переход
-      window.location.href = url;
+      // Фоллбэк
+      window.location.href = 'https://t.me/' + pathFull;
     }
 
     // Открыть сайт
