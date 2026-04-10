@@ -22,12 +22,7 @@
       --accent-mint: #6bffb8;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     body {
       font-family: 'Outfit', sans-serif;
@@ -37,264 +32,116 @@
       overflow-x: hidden;
     }
 
-    /* ===== SCREENS ===== */
-    .screen {
-      display: none;
-      animation: fadeIn 0.35s ease;
-    }
-    .screen.active {
-      display: block;
-    }
+    .screen { display: none; animation: fadeIn 0.35s ease; }
+    .screen.active { display: block; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ===== HOME SCREEN ===== */
-    .home-header {
-      padding: 32px 24px 16px;
-      text-align: center;
-    }
+    .home-header { padding: 32px 24px 16px; text-align: center; }
 
     .home-header .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
+      width: 80px; height: 80px; border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-warm), var(--accent-gold));
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      font-weight: 700;
-      color: #1a1a2e;
+      margin: 0 auto 16px; display: flex; align-items: center; justify-content: center;
+      font-size: 32px; font-weight: 700; color: #1a1a2e;
       box-shadow: 0 8px 32px rgba(255, 107, 107, 0.25);
     }
 
-    .home-header h1 {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      margin-bottom: 6px;
-    }
+    .home-header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 6px; }
+    .home-header p { font-family: 'Literata', serif; font-size: 14px; color: var(--tg-hint); line-height: 1.5; }
 
-    .home-header p {
-      font-family: 'Literata', serif;
-      font-size: 14px;
-      color: var(--tg-hint);
-      line-height: 1.5;
-    }
-
-    /* ===== CARDS ===== */
-    .cards {
-      padding: 16px 20px 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+    .cards { padding: 16px 20px 40px; display: flex; flex-direction: column; gap: 14px; }
 
     .card {
-      background: var(--tg-secondary-bg);
-      border-radius: var(--card-radius);
-      padding: 22px 22px 20px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      text-decoration: none;
-      color: inherit;
-      display: block;
+      background: var(--tg-secondary-bg); border-radius: var(--card-radius);
+      padding: 22px 22px 20px; cursor: pointer; position: relative; overflow: hidden;
+      transition: transform 0.2s ease; border: none; width: 100%;
+      text-align: left; font-family: inherit; color: inherit;
     }
+    .card:active { transform: scale(0.97); }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent-warm), var(--accent-gold)); }
+    .card:nth-child(2)::before { background: linear-gradient(90deg, var(--accent-gold), var(--accent-mint)); }
+    .card:nth-child(3)::before { background: linear-gradient(90deg, var(--accent-mint), var(--tg-link)); }
+    .card-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+    .card h2 { font-size: 17px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.2px; }
+    .card p { font-size: 13px; color: var(--tg-hint); line-height: 1.45; font-family: 'Literata', serif; }
+    .card-arrow { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--tg-hint); font-size: 18px; opacity: 0.5; }
 
-    .card:active {
-      transform: scale(0.97);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-    }
-
-    .card:nth-child(1)::before {
-      background: linear-gradient(90deg, var(--accent-warm), var(--accent-gold));
-    }
-    .card:nth-child(2)::before {
-      background: linear-gradient(90deg, var(--accent-gold), var(--accent-mint));
-    }
-    .card:nth-child(3)::before {
-      background: linear-gradient(90deg, var(--accent-mint), var(--tg-link));
-    }
-
-    .card-icon {
-      font-size: 28px;
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .card h2 {
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      letter-spacing: -0.2px;
-    }
-
-    .card p {
-      font-size: 13px;
-      color: var(--tg-hint);
-      line-height: 1.45;
-      font-family: 'Literata', serif;
-    }
-
-    .card-arrow {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--tg-hint);
-      font-size: 18px;
-      opacity: 0.5;
-    }
-
-    /* ===== ABOUT SCREEN ===== */
-    .about-screen {
-      padding: 0 20px 40px;
-    }
+    .inner-screen { padding: 0 20px 40px; }
 
     .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 16px 0;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--tg-link);
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: 'Outfit', sans-serif;
+      display: inline-flex; align-items: center; gap: 6px; padding: 16px 0;
+      font-size: 15px; font-weight: 500; color: var(--tg-link);
+      background: none; border: none; cursor: pointer; font-family: 'Outfit', sans-serif;
     }
+
+    .inner-screen h2 { font-size: 20px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.3px; }
+    .inner-screen .desc { font-family: 'Literata', serif; font-size: 15px; line-height: 1.7; color: var(--tg-hint); margin-bottom: 20px; }
+
+    .terms-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      border-radius: 16px; overflow: hidden; margin-bottom: 20px;
+    }
+    .terms-table tr { background: var(--tg-secondary-bg); }
+    .terms-table tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+    .terms-table td { padding: 14px 16px; font-size: 14px; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .terms-table td:first-child { font-weight: 600; color: var(--tg-text); width: 38%; }
+    .terms-table td:last-child { color: var(--tg-hint); font-family: 'Literata', serif; }
+    .terms-table tr:last-child td { border-bottom: none; }
+
+    .terms-note { font-family: 'Literata', serif; font-size: 13px; color: var(--tg-hint); line-height: 1.6; opacity: 0.7; margin-top: 16px; }
 
     .about-hero {
-      width: 100%;
-      height: 200px;
-      border-radius: var(--card-radius);
-      overflow: hidden;
-      margin-bottom: 24px;
-      background: linear-gradient(135deg, #2a2a4a 0%, #3a2a5a 50%, #2a3a4a 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+      width: 100%; height: 200px; border-radius: var(--card-radius); overflow: hidden;
+      margin-bottom: 24px; background: linear-gradient(135deg, #2a2a4a 0%, #3a2a5a 50%, #2a3a4a 100%);
+      display: flex; align-items: center; justify-content: center; position: relative;
     }
-
     .about-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(circle at 30% 40%, rgba(255, 107, 107, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 70% 60%, rgba(107, 255, 184, 0.1) 0%, transparent 50%);
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(255,107,107,0.15) 0%, transparent 60%),
+                  radial-gradient(circle at 70% 60%, rgba(107,255,184,0.1) 0%, transparent 50%);
     }
+    .about-hero-text { font-size: 48px; z-index: 1; }
+    .about-content p { font-family: 'Literata', serif; font-size: 15px; line-height: 1.7; color: var(--tg-hint); margin-bottom: 16px; }
+    .about-content p strong { color: var(--tg-text); font-weight: 500; }
+    .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .about-tag { background: var(--tg-secondary-bg); padding: 8px 16px; border-radius: 100px; font-size: 13px; font-weight: 500; color: var(--tg-hint); border: 1px solid rgba(255,255,255,0.06); }
 
-    .about-hero-text {
-      font-size: 48px;
-      z-index: 1;
-    }
+    .footer { text-align: center; padding: 8px 20px 24px; font-size: 12px; color: var(--tg-hint); opacity: 0.5; }
 
-    .about-content h2 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      letter-spacing: -0.3px;
-    }
-
-    .about-content p {
-      font-family: 'Literata', serif;
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--tg-hint);
-      margin-bottom: 16px;
-    }
-
-    .about-content p strong {
-      color: var(--tg-text);
-      font-weight: 500;
-    }
-
-    .about-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-    }
-
-    .about-tag {
-      background: var(--tg-secondary-bg);
-      padding: 8px 16px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--tg-hint);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    /* ===== FOOTER ===== */
-    .footer {
-      text-align: center;
-      padding: 8px 20px 24px;
-      font-size: 12px;
-      color: var(--tg-hint);
-      opacity: 0.5;
-    }
-
-    /* ===== STAGGER ANIMATION ===== */
-    .cards .card {
-      opacity: 0;
-      animation: slideUp 0.4s ease forwards;
-    }
+    .cards .card { opacity: 0; animation: slideUp 0.4s ease forwards; }
     .cards .card:nth-child(1) { animation-delay: 0.1s; }
     .cards .card:nth-child(2) { animation-delay: 0.2s; }
     .cards .card:nth-child(3) { animation-delay: 0.3s; }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
 
-  <!-- HOME SCREEN -->
+  <!-- HOME -->
   <div id="home" class="screen active">
     <div class="home-header">
       <div class="avatar">С</div>
-      <h1>Сергей Искра ★</h1>
+      <h1>Сергей Искра</h1>
       <p>Копирайтер · Тексты, которые работают</p>
     </div>
-
     <div class="cards">
-      <!-- Card 1: Пост в канале -->
-      <a href="https://t.me/iskra_miniapp/2" class="card">
+      <div class="card" onclick="showScreen('terms')">
         <span class="card-icon">📋</span>
         <h2>Условия работы</h2>
         <p>Как я работаю, сроки, стоимость и&nbsp;всё, что нужно знать</p>
         <span class="card-arrow">›</span>
-      </a>
-
-      <!-- Card 2: Внутренний раздел -->
-      <div class="card" onclick="showAbout()">
+      </div>
+      <div class="card" onclick="showScreen('about')">
         <span class="card-icon">✦</span>
         <h2>Обо мне</h2>
         <p>Кто я, что делаю и&nbsp;почему стоит работать вместе</p>
         <span class="card-arrow">›</span>
       </div>
-
-      <!-- Card 3: Сайт -->
       <div class="card" onclick="openSite()">
         <span class="card-icon">🌐</span>
         <h2>Сайт</h2>
@@ -302,31 +149,37 @@
         <span class="card-arrow">›</span>
       </div>
     </div>
-
     <div class="footer">сделано с ♥ в Telegram</div>
   </div>
 
-  <!-- ABOUT SCREEN -->
+  <!-- TERMS -->
+  <div id="terms" class="screen">
+    <div class="inner-screen">
+      <button class="back-btn" onclick="showScreen('home')">← Назад</button>
+      <h2>Условия работы</h2>
+      <p class="desc">Всё прозрачно и понятно — никаких сюрпризов.</p>
+      <table class="terms-table">
+        <tr><td>Формат</td><td>Удалённо, на&nbsp;связи в&nbsp;рабочее время</td></tr>
+        <tr><td>Сроки</td><td>От&nbsp;2&nbsp;дней — зависит от&nbsp;объёма задачи</td></tr>
+        <tr><td>Оплата</td><td>50% предоплата, 50% по&nbsp;готовности</td></tr>
+        <tr><td>Правки</td><td>2&nbsp;раунда правок включены в&nbsp;стоимость</td></tr>
+        <tr><td>Стоимость</td><td>От&nbsp;5 000 ₽ — обсуждаем после брифа</td></tr>
+        <tr><td>Бриф</td><td>Заполняем вместе перед стартом</td></tr>
+        <tr><td>Связь</td><td>Telegram — основной канал</td></tr>
+      </table>
+      <p class="terms-note">* Точная стоимость зависит от объёма и сложности задачи. Напишите — обсудим ваш проект.</p>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
   <div id="about" class="screen">
-    <div class="about-screen">
-      <button class="back-btn" onclick="showHome()">← Назад</button>
-
-      <div class="about-hero">
-        <span class="about-hero-text">✦</span>
-      </div>
-
+    <div class="inner-screen">
+      <button class="back-btn" onclick="showScreen('home')">← Назад</button>
+      <div class="about-hero"><span class="about-hero-text">✦</span></div>
       <div class="about-content">
         <h2>Привет, я Искра!</h2>
-        <p>
-          Я копирайтер — пишу тексты для бизнеса: <strong>лендинги, рассылки, посты, 
-          презентации</strong>. Помогаю брендам говорить понятно, ярко и по делу.
-        </p>
-        <p>
-          Верю, что хороший текст — это не про красивые слова, 
-          а про <strong>результат</strong>. Каждый проект начинается с погружения 
-          в задачу, а заканчивается текстом, который решает конкретную проблему.
-        </p>
-
+        <p>Я копирайтер — пишу тексты для бизнеса: <strong>лендинги, рассылки, посты, презентации</strong>. Помогаю брендам говорить понятно, ярко и по делу.</p>
+        <p>Верю, что хороший текст — это не про красивые слова, а про <strong>результат</strong>. Каждый проект начинается с погружения в задачу, а заканчивается текстом, который решает конкретную проблему.</p>
         <div class="about-tags">
           <span class="about-tag">Лендинги</span>
           <span class="about-tag">Email-рассылки</span>
@@ -339,26 +192,24 @@
   </div>
 
   <script>
-    // Инициализация Telegram Web App
     const tg = window.Telegram.WebApp;
     tg.ready();
     tg.expand();
 
-    // Навигация
-    function showHome() {
-      document.getElementById('about').classList.remove('active');
-      document.getElementById('home').classList.add('active');
-      tg.BackButton.hide();
+    var currentScreen = 'home';
+
+    function showScreen(id) {
+      document.getElementById(currentScreen).classList.remove('active');
+      document.getElementById(id).classList.add('active');
+      currentScreen = id;
+      if (id === 'home') {
+        tg.BackButton.hide();
+      } else {
+        tg.BackButton.show();
+        tg.BackButton.onClick(function() { showScreen('home'); });
+      }
     }
 
-    function showAbout() {
-      document.getElementById('home').classList.remove('active');
-      document.getElementById('about').classList.add('active');
-      tg.BackButton.show();
-      tg.BackButton.onClick(showHome);
-    }
-
-    // Открыть сайт
     function openSite() {
       tg.openLink('https://kraftainer.ru');
     }
