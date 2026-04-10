@@ -357,7 +357,11 @@
 
     // Открыть пост в канале
     function openPost() {
-      tg.openTelegramLink('https://t.me/iskra_miniapp/2');
+      try {
+        tg.openTelegramLink('https://t.me/iskra_miniapp/2');
+      } catch(e) {
+        window.open('https://t.me/iskra_miniapp/2', '_blank');
+      }
     }
 
     // Открыть сайт
