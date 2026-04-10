@@ -270,18 +270,18 @@
   <div id="home" class="screen active">
     <div class="home-header">
       <div class="avatar">С</div>
-      <h1>Сергей Искра</h1>
+      <h1>Дизайнер: Искра</h1>
       <p>Копирайтер · Тексты, которые работают</p>
     </div>
 
     <div class="cards">
       <!-- Card 1: Пост в канале -->
-      <a href="https://t.me/iskra_miniapp/2" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <div class="card" onclick="openPost()">
         <span class="card-icon">📋</span>
         <h2>Условия работы</h2>
         <p>Как я работаю, сроки, стоимость и&nbsp;всё, что нужно знать</p>
         <span class="card-arrow">›</span>
-      </a>
+      </div>
 
       <!-- Card 2: Внутренний раздел -->
       <div class="card" onclick="showAbout()">
@@ -355,15 +355,25 @@
       tg.BackButton.onClick(showHome);
     }
 
-    // Открыть пост в канале
+    // Открыть пост в канале — три метода по очереди
     function openPost() {
-      // iOS: openTelegramLink имеет баги, поэтому используем прямой редирект
-      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-      if (isIOS) {
-        window.location.href = 'https://t.me/iskra_miniapp/2';
-      } else {
-        tg.openTelegramLink('https://t.me/iskra_miniapp/2');
-      }
+      var path = '/iskra_miniapp/2';
+      var url = 'https://t.me' + path;
+
+      // Метод 1: низкоуровневый postEvent (самый надёжный на iOS)
+      try {
+        window.TelegramWebviewProxy.postEvent('web_app_open_tg_link', JSON.stringify({ path_full: path }));
+        return;
+      } catch(e) {}
+
+      // Метод 2: стандартный SDK
+      try {
+        tg.openTelegramLink(url);
+        return;
+      } catch(e) {}
+
+      // Метод 3: прямой переход
+      window.location.href = url;
     }
 
     // Открыть сайт
