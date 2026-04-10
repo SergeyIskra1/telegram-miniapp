@@ -357,10 +357,12 @@
 
     // Открыть пост в канале
     function openPost() {
-      try {
+      // iOS: openTelegramLink имеет баги, поэтому используем прямой редирект
+      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) {
+        window.location.href = 'https://t.me/iskra_miniapp/2';
+      } else {
         tg.openTelegramLink('https://t.me/iskra_miniapp/2');
-      } catch(e) {
-        window.open('https://t.me/iskra_miniapp/2', '_blank');
       }
     }
 
